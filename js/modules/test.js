@@ -31,8 +31,11 @@ export async function render(container, params = {}, navegar) {
 }
 
 async function obtenerBancoTest() {
-  const { questions } = await import("../../data/questions.js");
-  return questions;
+  const [{ questions }, { questionsExtra }] = await Promise.all([
+    import("../../data/questions.js"),
+    import("../../data/questions-extra.js"),
+  ]);
+  return [...questions, ...questionsExtra];
 }
 
 function renderMenuModos(container, navegar) {

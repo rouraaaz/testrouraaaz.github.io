@@ -448,4 +448,51 @@ export const asientosConstruir = [
       { cuenta: "(2818) Amortización acumulada de elementos de transporte", debe: 0, haber: 3500 },
     ],
   },
+  {
+    id: "con005",
+    tema: "Pago de nóminas netas pendientes",
+    situacion: "La empresa paga a sus empleados, mediante transferencia bancaria, 16.300 € correspondientes a las nóminas netas del mes anterior, ya registradas como pendientes de pago. Construye el asiento del pago.",
+    cuentasDisponibles: [
+      "(465) Remuneraciones pendientes de pago",
+      "(640) Sueldos y salarios",
+      "(572) Bancos",
+      "(476) Organismos de la Seguridad Social, acreedores",
+    ],
+    solucion: [
+      { cuenta: "(465) Remuneraciones pendientes de pago", debe: 16300, haber: 0 },
+      { cuenta: "(572) Bancos", debe: 0, haber: 16300 },
+    ],
+  },
+  {
+    id: "con006",
+    tema: "Devolución de una venta a crédito",
+    situacion: "Un cliente devuelve mercaderías defectuosas correspondientes a una venta a crédito anterior, por un importe de 3.000 € + IVA 21% (3.630 € en total), que se abonan contra su cuenta pendiente de cobro. Construye el asiento de la devolución.",
+    cuentasDisponibles: [
+      "(708) Devoluciones de ventas y operaciones similares",
+      "(700) Ventas de mercaderías",
+      "(477) H.P. IVA repercutido",
+      "(430) Clientes",
+      "(600) Compra de mercaderías",
+    ],
+    solucion: [
+      { cuenta: "(708) Devoluciones de ventas y operaciones similares", debe: 3000, haber: 0 },
+      { cuenta: "(477) H.P. IVA repercutido", debe: 630, haber: 0 },
+      { cuenta: "(430) Clientes", debe: 0, haber: 3630 },
+    ],
+  },
+  {
+    id: "con007",
+    tema: "Deterioro de existencias obsoletas",
+    situacion: "Al cierre del ejercicio, la empresa detecta que parte de sus existencias de mercaderías, con un coste de 9.000 €, han quedado obsoletas: su valor de mercado estimado es de solo 2.000 €. Construye el asiento para dotar el deterioro por la pérdida de valor.",
+    cuentasDisponibles: [
+      "(693) Pérdidas por deterioro de existencias",
+      "(390) Deterioro de valor de las mercaderías",
+      "(600) Compra de mercaderías",
+      "(300) Mercaderías",
+    ],
+    solucion: [
+      { cuenta: "(693) Pérdidas por deterioro de existencias", debe: 7000, haber: 0 },
+      { cuenta: "(390) Deterioro de valor de las mercaderías", debe: 0, haber: 7000 },
+    ],
+  },
 ];

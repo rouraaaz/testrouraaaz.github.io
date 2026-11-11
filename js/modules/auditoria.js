@@ -1,7 +1,11 @@
 import { el, renderMCQ, navegacionPreguntas, progressBar } from "../ui.js";
 
 export async function render(container, params = {}, navegar) {
-  const { teoriaAuditoria, auditoriaQuiz } = await import("../../data/auditoria.js");
+  const [{ teoriaAuditoria, auditoriaQuiz }, { auditoriaQuizExtra }] = await Promise.all([
+    import("../../data/auditoria.js"),
+    import("../../data/auditoria-quiz-extra.js"),
+  ]);
+  const quizCompleto = [...auditoriaQuiz, ...auditoriaQuizExtra];
   const vista = params.vista || "teoria";
   const temaId = params.tema || teoriaAuditoria[0].id;
 
@@ -15,7 +19,7 @@ export async function render(container, params = {}, navegar) {
     ])
   );
 
-  if (vista === "quiz") return renderQuiz(container, auditoriaQuiz);
+  if (vista === "quiz") return renderQuiz(container, quizCompleto);
 
   const tabs = el("div", { class: "btn-fila", style: "margin-bottom:1rem;flex-wrap:wrap" });
   teoriaAuditoria.forEach((t) => tabs.appendChild(el("button", { class: `btn ${t.id === temaId ? "btn-primario" : "btn-secundario"}`, onclick: () => navegar(`auditoria?tema=${t.id}`) }, t.titulo)));

@@ -1,7 +1,11 @@
 import { el, renderMCQ, navegacionPreguntas, shuffle, progressBar } from "../ui.js";
 
 export async function render(container, params = {}, navegar) {
-  const { ratios, ratiosPractica } = await import("../../data/ratios.js");
+  const [{ ratios, ratiosPractica }, { ratiosPracticaExtra }] = await Promise.all([
+    import("../../data/ratios.js"),
+    import("../../data/ratios-practica-extra.js"),
+  ]);
+  const practicaCompleta = [...ratiosPractica, ...ratiosPracticaExtra];
   const vista = params.vista || "fichas";
 
   container.appendChild(
@@ -14,7 +18,7 @@ export async function render(container, params = {}, navegar) {
     ])
   );
 
-  if (vista === "practica") return renderPractica(container, navegar, ratiosPractica);
+  if (vista === "practica") return renderPractica(container, navegar, practicaCompleta);
 
   container.appendChild(
     el("div", { class: "aviso-sector" }, "⚠️ Los valores de referencia (alto/bajo) NO son reglas universales: dependen del sector, el modelo de negocio y las características concretas de cada empresa. Un auditor siempre interpreta el ratio en su contexto.")

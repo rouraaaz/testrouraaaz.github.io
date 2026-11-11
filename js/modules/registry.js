@@ -6,12 +6,35 @@ let cache = null;
 
 export async function cargarTodoElBanco() {
   if (cache) return cache;
-  const [{ questions }, { auditoriaQuiz }, { asientosQuiz }] = await Promise.all([
+  const [
+    { questions },
+    { questionsExtra },
+    { auditoriaQuiz },
+    { auditoriaQuizExtra },
+    { asientosQuiz },
+    { asientosQuizExtra },
+    { ratiosPractica },
+    { ratiosPracticaExtra },
+  ] = await Promise.all([
     import("../../data/questions.js"),
+    import("../../data/questions-extra.js"),
     import("../../data/auditoria.js"),
+    import("../../data/auditoria-quiz-extra.js"),
     import("../../data/asientos.js"),
+    import("../../data/asientos-extra.js"),
+    import("../../data/ratios.js"),
+    import("../../data/ratios-practica-extra.js"),
   ]);
-  cache = [...questions, ...auditoriaQuiz, ...asientosQuiz];
+  cache = [
+    ...questions,
+    ...questionsExtra,
+    ...auditoriaQuiz,
+    ...auditoriaQuizExtra,
+    ...asientosQuiz,
+    ...asientosQuizExtra,
+    ...ratiosPractica,
+    ...ratiosPracticaExtra,
+  ];
   return cache;
 }
 

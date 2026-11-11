@@ -2,7 +2,11 @@ import { el, renderMCQ, navegacionPreguntas, progressBar, formatEUR } from "../u
 import { recordAttempt } from "../storage.js";
 
 export async function render(container, params = {}, navegar) {
-  const { reglasFundamentales, asientosQuiz, asientosConstruir } = await import("../../data/asientos.js");
+  const [{ reglasFundamentales, asientosQuiz, asientosConstruir }, { asientosQuizExtra }] = await Promise.all([
+    import("../../data/asientos.js"),
+    import("../../data/asientos-extra.js"),
+  ]);
+  const quizCompleto = [...asientosQuiz, ...asientosQuizExtra];
   const vista = params.vista || "teoria";
 
   container.appendChild(
@@ -16,7 +20,7 @@ export async function render(container, params = {}, navegar) {
     ])
   );
 
-  if (vista === "quiz") return renderQuiz(container, navegar, asientosQuiz);
+  if (vista === "quiz") return renderQuiz(container, navegar, quizCompleto);
   if (vista === "construir") return renderConstruir(container, asientosConstruir);
 
   const card = el("div", { class: "card" });

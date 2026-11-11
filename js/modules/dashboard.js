@@ -2,12 +2,12 @@ import { getStats, scoreLabel, clearProgress } from "../storage.js";
 import { el, progressBar } from "../ui.js";
 
 const MODULOS_MENU = [
-  { ruta: "test", icono: "📝", titulo: "Test de conocimientos", desc: "50+ preguntas sobre contabilidad financiera y fundamentos de auditoría." },
-  { ruta: "ratios", icono: "📊", titulo: "Ratios financieros", desc: "Fichas completas + simulador de cálculo de los ratios más preguntados." },
+  { ruta: "test", icono: "📝", titulo: "Test de conocimientos", desc: "100+ preguntas sobre contabilidad financiera y fundamentos de auditoría." },
+  { ruta: "ratios", icono: "📊", titulo: "Ratios financieros", desc: "16 fichas completas + 20 ejercicios de cálculo de los ratios más preguntados." },
   { ruta: "balances", icono: "🏢", titulo: "Balances y PYG", desc: "5 empresas reales de distintos sectores para analizar e interpretar." },
-  { ruta: "asientos", icono: "✍️", titulo: "Asientos contables", desc: "Practica el Debe y el Haber con 17 operaciones típicas del PGC." },
+  { ruta: "asientos", icono: "✍️", titulo: "Asientos contables", desc: "Practica el Debe y el Haber con 27 operaciones típicas del PGC." },
   { ruta: "auditoria", icono: "🔎", titulo: "Auditoría y procedimientos", desc: "OMNIA, GRA, CIRBE, hechos posteriores y procedimientos NIA-ES." },
-  { ruta: "casos", icono: "⚖️", titulo: "Casos prácticos", desc: "10 situaciones reales de un auditor junior, con solución razonada." },
+  { ruta: "casos", icono: "⚖️", titulo: "Casos prácticos", desc: "13 situaciones reales de un auditor junior, con solución razonada." },
   { ruta: "perfil", icono: "🎤", titulo: "Preguntas de perfil", desc: "Prepara las preguntas sobre tu CV, formación y motivación." },
   { ruta: "guia", icono: "📘", titulo: "Guía / Chuleta", desc: "Repaso teórico rápido de todos los conceptos clave antes de entrar." },
 ];

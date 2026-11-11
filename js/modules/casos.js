@@ -2,11 +2,14 @@ import { el } from "../ui.js";
 import { markCasoVisitado } from "../storage.js";
 
 export async function render(container, params = {}, navegar) {
-  const { casos } = await import("../../data/casos.js");
+  const [{ casos }, { casosExtra }] = await Promise.all([import("../../data/casos.js"), import("../../data/casos-extra.js")]);
+  const todosCasos = [...casos, ...casosExtra];
 
-  container.appendChild(el("div", { class: "topbar" }, [el("div", {}, [el("h1", {}, "Casos prácticos de auditoría"), el("div", { class: "subt" }, "10 situaciones reales que podría encontrar un auditor junior")])]));
+  container.appendChild(
+    el("div", { class: "topbar" }, [el("div", {}, [el("h1", {}, "Casos prácticos de auditoría"), el("div", { class: "subt" }, `${todosCasos.length} situaciones reales que podría encontrar un auditor junior`)])])
+  );
 
-  casos.forEach((caso, idx) => {
+  todosCasos.forEach((caso, idx) => {
     const card = el("div", { class: "card" });
     card.appendChild(el("h3", {}, `Caso ${idx + 1}: ${caso.titulo}`));
     card.appendChild(el("p", {}, caso.situacion));
